@@ -1,6 +1,6 @@
 ![image](images/microchip.jpg) 
 
-## %repoDescritpion%
+## dspic33ck curiosity spi with dma eeprom demo
 
 Board Image if any.
 
