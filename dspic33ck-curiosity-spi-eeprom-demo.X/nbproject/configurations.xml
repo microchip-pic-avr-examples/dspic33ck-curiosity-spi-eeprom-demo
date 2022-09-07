@@ -7,10 +7,6 @@
       <logicalFolder name="MCC Generated Files"
                      displayName="MCC Generated Files"
                      projectFiles="true">
-        <logicalFolder name="dma" displayName="dma" projectFiles="true">
-          <itemPath>mcc_generated_files/dma/dma.h</itemPath>
-          <itemPath>mcc_generated_files/dma/dma_types.h</itemPath>
-        </logicalFolder>
         <logicalFolder name="spi_host" displayName="spi_host" projectFiles="true">
           <itemPath>mcc_generated_files/spi_host/spi_host_interface.h</itemPath>
           <itemPath>mcc_generated_files/spi_host/spi1.h</itemPath>
@@ -45,11 +41,6 @@
       <logicalFolder name="MCC Generated Files"
                      displayName="MCC Generated Files"
                      projectFiles="true">
-        <logicalFolder name="dma" displayName="dma" projectFiles="true">
-          <logicalFolder name="src" displayName="src" projectFiles="true">
-            <itemPath>mcc_generated_files/dma/src/dma.c</itemPath>
-          </logicalFolder>
-        </logicalFolder>
         <logicalFolder name="spi_host" displayName="spi_host" projectFiles="true">
           <logicalFolder name="src" displayName="src" projectFiles="true">
             <itemPath>mcc_generated_files/spi_host/src/spi1.c</itemPath>
@@ -81,6 +72,7 @@
                    projectFiles="false">
       <itemPath>Makefile</itemPath>
       <itemPath>dspic33ck-curiosity-spi-with-dma-eeprom-demo.mc3</itemPath>
+      <itemPath>dspic33ck-curiosity-spi-eeprom-demo.mc3</itemPath>
     </logicalFolder>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>

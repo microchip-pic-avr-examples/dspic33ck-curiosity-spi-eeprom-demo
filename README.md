@@ -47,6 +47,7 @@ This example uses 25AA512 based SPI PIM with size of 512K bit with 128byte page 
   Compares both transmit and receive buffer and prints the EEPROM write/read status in Serial Terminal.
 - In second state demo code writes Number starting from 0 to 127(Max page size) into EEPROM and reads it back from EEPROM,
   Compares transmitted and received Numbers and prints the EEPROM write/read status in Serial Terminal.
+  ![Serial Terminal Output](images/write_successful.PNG)
 
 ## MCC settings for reference
 

@@ -29,9 +29,9 @@
 #include <libpic30.h>
 
 /*     EEPROM COMMANDS      */
-#define         EEPROM_READ                 0b00000011
-#define         EEPROM_WRITE                0b00000010
-#define         EEPROM_WRITEENABLE          0b00000110
+#define         EEPROM_READ                 0x03
+#define         EEPROM_WRITE                0x02
+#define         EEPROM_WRITEENABLE          0x06
 #define         EEPROM_WRITEDISABLE         0x04   //write disable
 #define         EEPROM_READSTATUS           0x05   //read status
 #define         EEPROM_WRITESTATUS          0x01   //write status register
@@ -49,14 +49,16 @@
 /* EEPROM API's*/
 void    EEPROM_writeEnable (void);
 void    EEPROM_writeDisable (void);
-uint8_t EEPROM_readStatusGet(void);
+void    EEPROM_chipErase (void);
+uint8_t EEPROM_readStatusGet (void);
 void    EEPROM_byteWrite (unsigned int address, uint8_t databyte);
 void    EEPROM_pageWrite (unsigned int address, uint8_t *bufferdata);
 uint8_t EEPROM_byteRead (unsigned int address);
-void    EEPROM_pageRead(uint16_t address, uint8_t *bufferData);
+void    EEPROM_pageRead (uint16_t address, uint8_t *bufferData);
 
 enum {
     SPI_INIT,
+    SPI_CLEAR,
     SPI_STR_WRITE_READ,
     SPI_NUM_WRITE_READ,
     SPI_STOP,
@@ -77,6 +79,14 @@ void EEPROM_writeDisable(void)
     CS_SetLow();
     __delay_us(1);
     SPI1_Host.ByteExchange(EEPROM_WRITEDISABLE);
+    CS_SetHigh();
+}
+
+void EEPROM_chipErase(void)
+{
+    CS_SetLow();
+    __delay_us(1);
+    SPI1_Host.ByteExchange(EEPROM_CHIPERASE);
     CS_SetHigh();
 }
 
@@ -161,24 +171,37 @@ int main(void)
     bool readStatus = true;
     
     SYSTEM_Initialize();
-    printf("SPI interface with EEPROM demo  \r\n");
+    printf("\r\n");
+    printf("****************************************************************************\r\n");
+    printf("dsPIC33CK256MP508 Curiosity SPI EEPROM Demo\r\n");
+    printf("****************************************************************************\r\n");
+    printf("\r\n");
     while(1)
     {
         switch(state){
             case SPI_INIT:
-                printf("EEPROM initialization .................... \r\n");
                 printf("SPI - Opening the port                     \r\n");
                 // print all connection information
                 SPI1_Open(HOST_CONFIG);
                 while(!SPI1_Host.IsTxReady());
                 printf("SPI port open - ready to communicate with EEPROM \r\n");
                 __delay_ms(1000);
+                state = SPI_CLEAR;
+                break;
+               
+            case SPI_CLEAR:
+                printf("\r\n");
+                printf(" EEPROM chip erase - clear all the memory \r\n");
+                EEPROM_chipErase();
+                __delay_ms(1000);
                 state = SPI_STR_WRITE_READ;
                 break;
                 
             case SPI_STR_WRITE_READ: 
+                printf("\r\n");
                 printf(" Write string to EEPROM from txBuffer, then read same string from EEPROM in rxBuffer \r\n");
                 printf(" Compare both txBuffer and rxBuffer to validate read/write     \r\n");
+                printf("\r\n");
                 EEPROM_pageWrite(START_ADDRESS, txBuffer);
                 __delay_ms(1000);
                 
@@ -192,13 +215,15 @@ int main(void)
                 else
                 {
                     printf("EEPROM String write and read Unsuccessful \r\n");
-                    state = SPI_STOP;
+                    state = SPI_NUM_WRITE_READ;
                 }
                 break;
                 
             case SPI_NUM_WRITE_READ:
+                printf("\r\n");
                 printf(" Write to memory number from 0 to 127 in second  page \r\n");
                 printf(" Read memory from 0 to 127 memory location - compare with number 0 to 127 \r\n");
+                printf("\r\n");
                 for ( counter = START_ADDRESS ; counter < EEPROM_BYTES_PER_PAGE ; counter++ )
                 {
                     EEPROM_byteWrite(counter, counter);
@@ -224,6 +249,7 @@ int main(void)
                 }
                 __delay_ms(1000);
                 printf("Close SPI Port \r\n");
+                printf("****************************************************************************\r\n");
                 state = SPI_STOP;
                 break;
                 

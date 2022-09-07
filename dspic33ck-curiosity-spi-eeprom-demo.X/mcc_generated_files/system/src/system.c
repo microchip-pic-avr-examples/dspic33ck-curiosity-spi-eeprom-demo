@@ -1,17 +1,16 @@
 /**
- * DMA Generated Driver Header File
+ * MAIN Generated Driver Header File
  * 
- * @file      dma.h
- * 
- * @defgroup  dmadriver DMA Driver
- * 
- * @brief     This is the generated driver header file for the DMA driver
- *
- * @version   Driver Version 1.1.0
- *
+ * @file      system.c
+ *            
+ * @ingroup   systemdriver
+ *            
+ * @brief     This is the generated driver header file for the System driver
+ *            
+ * @version   Driver Version 1.0.1
+ *            
  * @skipline  Device : dsPIC33CK256MP508
 */
-
 /*
 © [2022] Microchip Technology Inc. and its subsidiaries.
 
@@ -33,21 +32,27 @@
     THIS SOFTWARE.
 */
 
-#ifndef DMA_H
-#define DMA_H
+#include "../system.h"
+#include "../system_types.h"
+#include "../clock.h"
+#include "../pins.h"
+#include "../dmt.h"
+#include "../../spi_host/spi1.h"
+#include "../../uart/uart1.h"
+#include "../interrupt.h"
 
-// Section: Included Files
 
-// Section: Driver Interface Function
+void SYSTEM_Initialize(void)
+{
+    CLOCK_Initialize();
+    PINS_Initialize();
+    DMT_Initialize();
+    SPI1_Initialize();
+    UART1_Initialize();
+    INTERRUPT_GlobalEnable();
+    INTERRUPT_Initialize();
+}
 
 /**
- * @ingroup  dmadriver
- * @brief    Initializes DMA module, using the given initialization data.
- *           This routine must be called before any other DMA routine is called.
- * @return   none
- */
-void DMA_Initialize (void);
-
-#endif //DMA_H
-
-
+ End of File
+*/
