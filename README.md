@@ -40,12 +40,6 @@ This example uses 25AA512 based SPI PIM with size of 512K bit with 128byte page 
 - Open the `dspic33c-dma-adc-to-uart.X` project in MPLAB® X IDE
 - Build and program the device
 
-**Data Visualizer (DV) Setup**
-
-1. In DV plugin select the communication port for curiosity board, click on terminal view and select display values in hex format (As 12-bit ADC is being configured, the conversion output will be in the range 0 to 4095). Refer the below image for DV Setup
-
-![](images/DV-setup.png)
-
 ## Operation
 
 - The demo code has two states - string write/read and Number write/read.
