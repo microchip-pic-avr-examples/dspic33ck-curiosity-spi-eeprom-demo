@@ -3,7 +3,7 @@
    "category":"com.microchip.ide.project",
    "content":{
       "metaDataVersion":"1.3.0",
-      "name":"com.microchip.mplabx.project.dspic33ck-curiosity-spi-with-dma-eeprom-demo",
+      "name":"com.microchip.mplabx.project.dspic33ck-curiosity-spi-eeprom-demo",
       "version":"1.0.0",
       "displayName":"dsPIC33CK Curiosity Development Board - SPI Demo",
       "projectName":"dspic33ck-curiosity-spi-eeprom-demo",

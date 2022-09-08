@@ -77,7 +77,7 @@ struct SPI1_HOST_CONFIG
 
 static const struct SPI1_HOST_CONFIG config[] = {  
                                         { 
-                                            /*Configuration setting for HOST_CONFIG.
+                                            /*Configuration setting for EEPROM_25AA512.
                                             SPI Mode : Mode 0, Sampled at : Middle, Clock Frequency : 100 kHz*/
                                             0x13,//SPI1BRGL
                                             0x121,//SPI1CON1L
@@ -102,8 +102,6 @@ void SPI1_Initialize (void)
     SPI1URDTH = 0x0;
     // SPIEN disabled; DISSDO disabled; MCLKEN FOSC/2; CKP Idle:Low, Active:High; SSEN disabled; MSTEN Host; MODE16 disabled; SMP Middle; DISSCK disabled; SPIFE Frame Sync pulse precedes; CKE Idle to Active; MODE32 disabled; SPISIDL disabled; ENHBUF enabled; DISSDI disabled; 
     SPI1CON1L = 0x21;
-    
-    
 }
 
 void SPI1_Deinitialize (void)
