@@ -63,8 +63,6 @@ int main(void)
                 printf("SPI - Opening the port \r\n");
                 SPI_Host->Open(EEPROM_25AA512);
                 while(!SPI_Host->IsTxReady());
-                EEPROM_ChipErase();
-                for(int i=0; i<10000; i++);
                 printf("SPI port open - ready to communicate with EEPROM \r\n");
                 state = STR_WRITE_READ;
                 break;
