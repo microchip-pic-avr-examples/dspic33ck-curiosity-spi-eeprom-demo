@@ -49,6 +49,7 @@ int main(void)
     uint8_t counter = 0; 
     uint8_t readData = 0;
     bool readStatus = true;
+    bool isExit = false;
     
     SYSTEM_Initialize();
     printf("\r\n");
@@ -56,7 +57,7 @@ int main(void)
     printf("dsPIC33CK256MP508 Curiosity SPI EEPROM Demo\r\n");
     printf("****************************************************************************\r\n");
     printf("\r\n");
-    while(1)
+    while(!isExit)
     {
         switch(state){
             case INIT:
@@ -64,6 +65,7 @@ int main(void)
                 SPI_Host->Open(EEPROM_25AA512);
                 while(!SPI_Host->IsTxReady());
                 printf("SPI port open - ready to communicate with EEPROM \r\n");
+                EEPROM_ChipErase(); //User can erase entire chip before write
                 state = STR_WRITE_READ;
                 break;
                 
@@ -76,7 +78,7 @@ int main(void)
                 EEPROM_PageRead(EEPROM_DATA_START_ADDRESS, rxBuffer, 20);
                 if(strncmp((char *)txBuffer, (char *)rxBuffer, EEPROM_DATA_BUFFER_SIZE) == 0)
                 {
-                    printf("EEPROM String write and read successful \r\n");
+                    printf("EEPROM String write and read Successful \r\n");
                     state = NUM_WRITE_READ;
                 }
                 else
@@ -88,8 +90,8 @@ int main(void)
                 
             case NUM_WRITE_READ:
                 printf("\r\n");
-                printf("Write to memory number from 0 to 127 in second  page \r\n");
-                printf("Read memory from 0 to 127 memory location - compare with number 0 to 127 \r\n");
+                printf("Write to memory number from 0 to 127 to EEPROM \r\n");
+                printf("Read memory from 0 to 127 from EEPROM - compare to validate read/write \r\n");
                 printf("\r\n");
                 for ( counter = EEPROM_DATA_START_ADDRESS ; counter < EEPROM_MAX_BYTES_PER_PAGE ; counter++ )
                 {
@@ -120,11 +122,17 @@ int main(void)
                 
             case STOP:               
                 SPI_Host->Close();
+                isExit = true;
                 break;
                 
             default:
                 //Do nothing
                 break;
         }
-    }  
+    }
+    
+    while(1)
+    {
+        
+    }
 }

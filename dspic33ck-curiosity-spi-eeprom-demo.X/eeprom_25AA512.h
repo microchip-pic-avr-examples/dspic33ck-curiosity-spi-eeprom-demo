@@ -40,10 +40,6 @@
 #define  FCY             CLOCK_SystemFrequencyGet()
 #include <libpic30.h>
 
-#ifdef	__cplusplus
-extern "C" {
-#endif /* __cplusplus */
-
 /*     EEPROM COMMANDS      */
 #define         EEPROM_CMD_READ                 0x03
 #define         EEPROM_CMD_WRITE                0x02
@@ -68,10 +64,6 @@ void    EEPROM_ByteWrite (unsigned int address, uint8_t databyte);
 void    EEPROM_PageWrite (unsigned int address, uint8_t *bufferdata, uint8_t bufferSize);
 uint8_t EEPROM_ByteRead (unsigned int address);
 void    EEPROM_PageRead (uint16_t address, uint8_t *bufferData, uint8_t bufferSize);
-
-#ifdef	__cplusplus
-}
-#endif /* __cplusplus */
 
 #endif	/* XC_HEADER_TEMPLATE_H */
 
