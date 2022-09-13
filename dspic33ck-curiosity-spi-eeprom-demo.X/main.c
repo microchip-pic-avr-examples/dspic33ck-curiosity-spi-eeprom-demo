@@ -35,6 +35,7 @@ enum  APP_SEQUENCE {
     APP_STR_WRITE_READ,
     APP_NUM_WRITE_READ,
     APP_STOP,
+    APP_IDLE,
 };
 
 /*
@@ -49,7 +50,6 @@ int main(void)
     uint8_t counter = 0; 
     uint8_t readData = 0;
     bool readStatus = true;
-    bool isExit = false;
     
     SYSTEM_Initialize();
     printf("\r\n");
@@ -57,7 +57,7 @@ int main(void)
     printf("dsPIC33CK256MP508 Curiosity SPI EEPROM Demo\r\n");
     printf("****************************************************************************\r\n");
     printf("\r\n");
-    while(!isExit)
+    while(1)
     {
         switch(state){
             case APP_INIT:
@@ -124,7 +124,11 @@ int main(void)
                 SPI_Host->Close();
                 printf("Closed spi port \r\n");
                 printf("****************************************************************************\r\n");
-                isExit = true;
+                state = APP_IDLE;
+                break;
+                
+            case APP_IDLE:
+                //Do nothing
                 break;
                 
             default:
@@ -133,8 +137,4 @@ int main(void)
         }
     }
     
-    while(1)
-    {
-        
-    }
 }
