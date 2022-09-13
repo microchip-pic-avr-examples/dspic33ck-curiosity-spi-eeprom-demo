@@ -28,6 +28,7 @@
 #define         EEPROM_DATA_START_ADDRESS       0x0000    // per page size 128 bytes
 #define         EEPROM_DATA_BUFFER_SIZE         20
 #define         EEPROM_DATA_BUFFER              "Microchip Technology"
+#define         EEPROM_RESPONSE_TIMEOUT        30000     // Is transmit ready timeout
 
 /* Application sequence */
 enum  APP_SEQUENCE {
@@ -63,10 +64,12 @@ int main(void)
             case APP_INIT:
                 printf("SPI - opening the port \r\n");
                 SPI_Host->Open(EEPROM_25AA512);
-                while(!SPI_Host->IsTxReady());
+                if(1U == SPI_Host->IsTxReady())  
+                {
+                    state = APP_STR_WRITE_READ;
+                }                
                 printf("SPI port open - ready to communicate with EEPROM \r\n");
-                EEPROM_ChipErase(); //User can erase entire chip before write
-                state = APP_STR_WRITE_READ;
+                EEPROM_ChipErase(); //User can erase entire chip before write                
                 break;
                 
             case APP_STR_WRITE_READ: 
