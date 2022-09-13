@@ -28,7 +28,6 @@
 #define         EEPROM_DATA_START_ADDRESS       0x0000    // per page size 128 bytes
 #define         EEPROM_DATA_BUFFER_SIZE         20
 #define         EEPROM_DATA_BUFFER              "Microchip Technology"
-#define         EEPROM_RESPONSE_TIMEOUT        30000     // Is transmit ready timeout
 
 /* Application sequence */
 enum  APP_SEQUENCE {
@@ -118,13 +117,13 @@ int main(void)
                 {
                     printf("EEPROM number write read unsuccessful \r\n");
                 }
-                printf("Close spi port \r\n");
-                printf("****************************************************************************\r\n");
                 state = APP_STOP;
                 break;
                 
             case APP_STOP:               
                 SPI_Host->Close();
+                printf("Closed spi port \r\n");
+                printf("****************************************************************************\r\n");
                 isExit = true;
                 break;
                 
