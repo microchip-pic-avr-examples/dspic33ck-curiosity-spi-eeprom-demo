@@ -6,10 +6,10 @@
 
 ## Summary
 
-This project demonstrates SPI Communication on dsPIC33CK Curiosity board using MCC-Melody driver code.
-The demo code writes string and Numbers into EEPROM and reads it back from eeprom then compares 
-trasmitted and received string and Numbers to validate EEPROM write read. 
-This example uses 25AA512 based SPI PIM with size of 512K bit with 128byte page size.
+This project demonstrates SPI communication on the dsPIC33CK Curiosity board using MCC-Melody driver code.
+The demo code writes strings and numbers into EEPROM and reads them back from EEPROM, then compares 
+transmitted and received strings and numbers to validate EEPROM write and read. 
+This example uses 25AA512 based SPI PIM with a size of 512K bits with 128-byte page size.
 
 ## Related Documentation
 
@@ -26,27 +26,27 @@ This example uses 25AA512 based SPI PIM with size of 512K bit with 128byte page 
 ## Hardware Used
 
 - [dsPIC33CK Curiosity Board](https://www.microchip.com/dm330030)
-- [SPI PIM]
+- [SPI PIM](https://www.microchip.com/en-us/development-tool/ac243003)
 
 ## Setup
 
 **Hardware Setup**
 
-- Connect a micro-USB cable to port `J7` of Curiosity board to USB port of PC
-- Make connection using connecting wires between SPI PIM and Curiosity board.
+- Connect a micro-USB cable to port `J7` of Curiosity board to the USB port of a PC.
+- Make a connection using connecting wires between SPI PIM and the Curiosity board.
 
 **MPLAB® X IDE Setup**
 
-- Open the `dspic33c-dma-adc-to-uart.X` project in MPLAB® X IDE
-- Build and program the device
+- Open the `dspic33c-dma-adc-to-uart.X` project in MPLAB® X IDE.
+- Build and program the device.
 
 ## Operation
 
-- The demo code has two states - string write/read and Number write/read.
-- In first state demo code writes string (declared in transmit buffer) into EEPROM and reads it back from EEPROM in receive buffer,
-  Compares both transmit and receive buffer and prints the EEPROM write/read status in Serial Terminal.
-- In second state demo code writes Number starting from 0 to 127(Max page size) into EEPROM and reads it back from EEPROM,
-  Compares transmitted and received Numbers and prints the EEPROM write/read status in Serial Terminal.
+- The demo code has two states - strings write/read and number write/read.
+- In the first state, the demo code write a string (declared in transmit buffer) into the EEPROM and reads it back from the EEPROM in the receive buffer,
+  compares both the transmit and receive buffer, and prints the EEPROM write/read status in the serial terminal.
+- In second state demo code writes number starting from 0 to 127(Max page size) into EEPROM and reads it back from EEPROM,
+  compares transmitted and received numbers and prints the EEPROM write/read status in serial terminal.
   ![Serial Terminal Output](images/write_successful.PNG)
 
 ## MCC settings for reference
