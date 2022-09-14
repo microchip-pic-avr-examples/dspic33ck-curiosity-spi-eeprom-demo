@@ -29,13 +29,12 @@
 #define         EEPROM_DATA_BUFFER_SIZE         20
 #define         EEPROM_DATA_BUFFER              "Microchip Technology"
 
-/* Application sequence */
-enum  APP_SEQUENCE {
-    APP_INIT,
-    APP_STR_WRITE_READ,
-    APP_NUM_WRITE_READ,
-    APP_STOP,
-    APP_IDLE,
+/* SPI EEPROM execution sequence */
+enum  SPI_EEPROM_SEQUENCE {
+    SPI_EEPROM_OPEN,
+    SPI_EEPROM_WRITE_READ,
+    SPI_EEPROM_CLOSE,
+    SPI_EEPROM_IDLE,
 };
 
 /*
@@ -46,88 +45,52 @@ int main(void)
 {
     uint8_t txBuffer[EEPROM_DATA_BUFFER_SIZE] = EEPROM_DATA_BUFFER;
     uint8_t rxBuffer[EEPROM_DATA_BUFFER_SIZE] = {0};
-    uint8_t state = APP_INIT; 
-    uint8_t counter = 0; 
-    uint8_t readData = 0;
-    bool readStatus = true;
+    uint8_t state = SPI_EEPROM_OPEN; 
     
     SYSTEM_Initialize();
-    printf("\r\n");
-    printf("****************************************************************************\r\n");
-    printf("dsPIC33CK256MP508 Curiosity SPI EEPROM Demo\r\n");
-    printf("****************************************************************************\r\n");
-    printf("\r\n");
+    printf("\r\n************************************************************\r\n");
+    printf(" dsPIC33CK256MP508 Curiosity SPI EEPROM Demo\r\n");
+    printf("************************************************************\r\n");
     while(1)
     {
         switch(state){
-            case APP_INIT:
-                printf("SPI - opening the port \r\n");
+            case SPI_EEPROM_OPEN:
                 SPI_Host->Open(EEPROM_25AA512);
                 if(1U == SPI_Host->IsTxReady())  
                 {
-                    state = APP_STR_WRITE_READ;
-                }                
-                printf("SPI port open - ready to communicate with EEPROM \r\n");
-                EEPROM_ChipErase(); //User can erase entire chip before write                
+                    printf("\r\n SPI port open - ready to communicate with EEPROM \r\n");
+                    EEPROM_ChipErase(); //User can erase entire chip before write 
+                    state = SPI_EEPROM_WRITE_READ;
+                }                               
                 break;
                 
-            case APP_STR_WRITE_READ: 
-                printf("\r\n");
-                printf("Write string to EEPROM from txBuffer, then read same string from EEPROM in rxBuffer \r\n");
-                printf("Compare both txBuffer and rxBuffer to validate read/write     \r\n");
-                printf("\r\n");
-                EEPROM_PageWrite(EEPROM_DATA_START_ADDRESS, txBuffer, 20);               
+            case SPI_EEPROM_WRITE_READ:  
+                printf("\r\n Write string to EEPROM from txBuffer \r\n");
+                EEPROM_PageWrite(EEPROM_DATA_START_ADDRESS, txBuffer, 20);  
+                
+                printf("\r\n Read string from EEPROM in rxBuffer \r\n");
                 EEPROM_PageRead(EEPROM_DATA_START_ADDRESS, rxBuffer, 20);
+                
+                printf("\r\n Compare both txBuffer and rxBuffer to validate write/read     \r\n");
                 if(strncmp((char *)txBuffer, (char *)rxBuffer, EEPROM_DATA_BUFFER_SIZE) == 0)
                 {
-                    printf("EEPROM string write and read successful \r\n");
-                    state = APP_NUM_WRITE_READ;
+                    printf("\r\n EEPROM write and read successful \r\n");
                 }
                 else
                 {
-                    printf("EEPROM string write and read unsuccessful \r\n");
-                    state = APP_NUM_WRITE_READ;
+                    printf("\r\n EEPROM write and read unsuccessful \r\n");                  
                 }
+                state = SPI_EEPROM_CLOSE;
+                break;
+                                
+            case SPI_EEPROM_CLOSE:     
+                printf("\r\n Close SPI port \r\n");
+                SPI_Host->Close();              
+                printf("************************************************************\r\n");
+                state = SPI_EEPROM_IDLE;
                 break;
                 
-            case APP_NUM_WRITE_READ:
-                printf("\r\n");
-                printf("Write to memory number from 0 to 127 to EEPROM \r\n");
-                printf("Read memory from 0 to 127 from EEPROM - compare to validate read/write \r\n");
-                printf("\r\n");
-                for ( counter = EEPROM_DATA_START_ADDRESS ; counter < EEPROM_MAX_BYTES_PER_PAGE ; counter++ )
-                {
-                    EEPROM_ByteWrite(counter, counter);
-                }
-                
-                for ( counter = EEPROM_DATA_START_ADDRESS; counter < EEPROM_MAX_BYTES_PER_PAGE; counter++ )
-                {
-                    readData = EEPROM_ByteRead(counter);
-                    //printf("Read_data : %d \r\n", readData);
-                    if(readData != counter) 
-                    {
-                        readStatus = false;
-                    }
-                }
-                if (readStatus == true)
-                {
-                    printf("EEPROM number write read successful \r\n");
-                }
-                else
-                {
-                    printf("EEPROM number write read unsuccessful \r\n");
-                }
-                state = APP_STOP;
-                break;
-                
-            case APP_STOP:               
-                SPI_Host->Close();
-                printf("Closed spi port \r\n");
-                printf("****************************************************************************\r\n");
-                state = APP_IDLE;
-                break;
-                
-            case APP_IDLE:
+            case SPI_EEPROM_IDLE:
                 //Do nothing
                 break;
                 

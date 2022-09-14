@@ -7,8 +7,8 @@
 ## Summary
 
 This project demonstrates SPI communication on the dsPIC33CK Curiosity board using MCC-Melody driver code.
-The demo code writes strings and numbers into EEPROM and reads them back from EEPROM, then compares 
-transmitted and received strings and numbers to validate EEPROM write and read. 
+The demo code writes string into EEPROM and reads it back from EEPROM, then compares 
+transmitted and received string to validate EEPROM write and read. 
 This example uses 25AA512 based SPI PIM with a size of 512K bits with 128-byte page size.
 
 ## Related Documentation
@@ -41,12 +41,8 @@ This example uses 25AA512 based SPI PIM with a size of 512K bits with 128-byte p
 - Build and program the device.
 
 ## Operation
-
-- The demo code has two states - strings write/read and number write/read.
-- In the first state, the demo code write a string (declared in transmit buffer) into the EEPROM and reads it back from the EEPROM in the receive buffer,
+- The demo code writes a string (declared in transmit buffer) into the EEPROM and reads it back from the EEPROM in the receive buffer,
   compares both the transmit and receive buffer, and prints the EEPROM write/read status in the serial terminal.
-- In second state demo code writes number starting from 0 to 127(Max page size) into EEPROM and reads it back from EEPROM,
-  compares transmitted and received numbers and prints the EEPROM write/read status in serial terminal.
   ![Serial Terminal Output](images/write_successful.PNG)
 
 ## MCC settings for reference
