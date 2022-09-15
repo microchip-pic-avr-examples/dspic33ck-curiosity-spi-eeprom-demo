@@ -7,7 +7,7 @@
  *            
  * @brief     This is the generated driver source file for the UART1 driver.
  *            
- * @version   Driver Version 1.3.0
+ * @version   Driver Version 1.4.0
  *            
  * @skipline  Device : dsPIC33CK256MP508
 */

@@ -5,7 +5,7 @@
 
 ### Features Added\Updated
 - SPI Communication using dsPIC33CK256MP508
-- String write/read and Number write/read to and from EEPROM
+- String write/read to and from EEPROM
 - Write/read status printed over serial terminal using UART
 
 

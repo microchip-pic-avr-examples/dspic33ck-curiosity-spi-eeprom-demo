@@ -59,6 +59,8 @@ This example uses 25AA512 based SPI PIM with a size of 512K bits with 128-byte p
 
 **PIN Configuration**
 
-- SPI pins: RD6 for SDO1, RD7 for SDI1, RD8 for SCK1 and RE10 for CS(chip select)
+- SPI pins: RD6 for SDO1, RD7 for SDI1, RD8 for SCK1
 - UART Pins: RD4 as U1TX and RD3 as U1RX<br>
   ![pin selection](images/PinSelection.PNG)
+- Configure RE10 as Chip Select pin<br>
+  ![CS configuration](images/CS_configuration.PNG)

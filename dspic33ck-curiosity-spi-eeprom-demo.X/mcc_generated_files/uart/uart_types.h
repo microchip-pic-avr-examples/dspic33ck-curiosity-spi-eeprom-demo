@@ -7,7 +7,7 @@
  * 
  * @brief     This is the generated driver types header file for the UART driver
  *
- * @version   Driver Version 1.3.0
+ * @version   Driver Version 1.4.0
  *
  * @skipline  Device : dsPIC33CK256MP508
 */
