@@ -7,7 +7,7 @@
  *            
  * @brief     This is the generated driver source file for INTERRUPT driver
  *            
- * @version   Driver Version 1.1.0
+ * @version   Driver Version 1.0.0
  *            
  * @skipline  Device : dsPIC33CK256MP508
 */

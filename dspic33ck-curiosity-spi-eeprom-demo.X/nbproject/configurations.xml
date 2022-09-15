@@ -25,7 +25,6 @@
           <itemPath>mcc_generated_files/system/reset_types.h</itemPath>
           <itemPath>mcc_generated_files/system/dmt.h</itemPath>
           <itemPath>mcc_generated_files/system/system_types.h</itemPath>
-          <itemPath>mcc_generated_files/system/interrupt_types.h</itemPath>
         </logicalFolder>
         <logicalFolder name="uart" displayName="uart" projectFiles="true">
           <itemPath>mcc_generated_files/uart/uart_types.h</itemPath>
@@ -417,8 +416,6 @@
                   value="${memories.instruction.ram.ranges}"/>
         <property key="memories.programmemory" value="true"/>
         <property key="memories.programmemory.ranges" value="0-2beff"/>
-        <property key="programmerToGoFilePath"
-                  value="D:/Firmware Specific/github projects/dspic33ck-curiosity-spi-with-dma-eeprom-demo/dspic33ck-curiosity-spi-eeprom-demo.X/debug/default/dspic33ck-curiosity-spi-eeprom-demo_ptg"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.pgmentry.voltage" value="low"/>

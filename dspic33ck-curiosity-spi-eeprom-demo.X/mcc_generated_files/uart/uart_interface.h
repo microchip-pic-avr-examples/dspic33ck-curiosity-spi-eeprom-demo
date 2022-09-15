@@ -7,7 +7,7 @@
  *            
  * @brief     Universal Asynchronous Receiver Transmitter driver using dsPIC MCUs
  *            
- * @version   Driver Version 1.4.0
+ * @version   Driver Version 1.3.0
  *            
  * @skipline  Device : dsPIC33CK256MP508
 */
