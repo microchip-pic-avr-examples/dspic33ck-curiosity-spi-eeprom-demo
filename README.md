@@ -6,10 +6,10 @@
 
 ## Summary
 
-This project demonstrates SPI communication on the dsPIC33CK Curiosity board using MCC-Melody driver code.
-The demo code writes string into EEPROM and reads it back from EEPROM, then compares 
-transmitted and received string to validate EEPROM write and read. 
-This example uses 25AA512 based SPI PIM with a size of 512K bits with 128-byte page size.
+This project demonstrates SPI communication on the dsPIC33CK Curiosity board using the MCC-Melody driver code.
+The demo code writes a string into EEPROM and reads it back from EEPROM, then compares 
+transmitted and received strings to validate EEPROM write and read. 
+This example uses 25AA512-based SPI PIM with a size of 512K bits and each page with a 128-byte page size.
 
 ## Related Documentation
 
@@ -32,17 +32,17 @@ This example uses 25AA512 based SPI PIM with a size of 512K bits with 128-byte p
 
 **Hardware Setup**
 
-- Connect a micro-USB cable to port `J7` of Curiosity board to the USB port of a PC.
+- Connect a micro-USB cable to port `J7` of the Curiosity board to the USB port of a PC.
 - Make a connection using connecting wires between SPI PIM and the Curiosity board.
 
 **MPLAB® X IDE Setup**
 
-- Open the `dspic33c-dma-adc-to-uart.X` project in MPLAB® X IDE.
+- Open the `dspic33ck-curiosity-spi-eeprom-demo.X` project in MPLAB® X IDE.
 - Build and program the device.
 
 ## Operation
 - The demo code writes a string (declared in transmit buffer) into the EEPROM and reads it back from the EEPROM in the receive buffer,
-  compares both the transmit and receive buffer, and prints the EEPROM write/read status in the serial terminal.
+  compares both the transmit and receive buffer and prints the EEPROM write/read status in the serial terminal.
   ![Serial Terminal Output](images/write_successful.PNG)
 
 ## MCC settings for reference
@@ -54,7 +54,7 @@ This example uses 25AA512 based SPI PIM with a size of 512K bits with 128-byte p
 
 **UART Configuration**
 
-- UART Configuration done in MCC Melody User Interface for this demo code <br>
+- UART Configuration is done in MCC Melody User Interface for this demo code <br>
   ![uart settings](images/uart.PNG)
 
 **PIN Configuration**
