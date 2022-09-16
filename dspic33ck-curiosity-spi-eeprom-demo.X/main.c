@@ -29,8 +29,8 @@
 #define         EEPROM_DATA_BUFFER_SIZE         20
 #define         EEPROM_DATA_BUFFER              "Microchip Technology"
 
-/* SPI EEPROM execution sequence */
-enum  SPI_EEPROM_SEQUENCE {
+/* SPI EEPROM state */
+enum  SPI_EEPROM_STATE {
     SPI_EEPROM_OPEN,
     SPI_EEPROM_WRITE_READ,
     SPI_EEPROM_CLOSE,
