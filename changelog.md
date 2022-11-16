@@ -2,7 +2,7 @@
 
 ### Release Highlights
 
-- Updated the keyword section of main.json file
+- Patch fix for Portal-Deploy
 
 # dspic33ck-curiosity-eeprom-demo v1.0.0
 
