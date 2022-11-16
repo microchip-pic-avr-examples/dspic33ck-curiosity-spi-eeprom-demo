@@ -1,6 +1,13 @@
+# dspic33ck-curiosity-eeprom-demo v1.0.1
+
+### Release Highlights
+
+- Updated the keyword section of main.json file
+
 # dspic33ck-curiosity-eeprom-demo v1.0.0
 
 ### Release Highlights
+
 - Initial release - Refer README.md for summary and execution procedure
 
 ### Features Added\Updated
