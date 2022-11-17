@@ -1,6 +1,13 @@
+# dspic33ck-curiosity-eeprom-demo v1.0.1
+
+### Release Highlights
+
+- Patch fix for Portal-Deploy
+
 # dspic33ck-curiosity-eeprom-demo v1.0.0
 
 ### Release Highlights
+
 - Initial release - Refer README.md for summary and execution procedure
 
 ### Features Added\Updated
